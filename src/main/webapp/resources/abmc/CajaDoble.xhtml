@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <!-- INTERFACE -->
+    <cc:interface componentType="cajaDoble">
+        <cc:attribute name="estilo" required="false"/>
+        <cc:attribute name="valor" required="true"/>
+        <cc:facet name="textoFaceta"/>
+    </cc:interface>
+
+    <!-- IMPLEMENTATION -->
+    <cc:implementation>
+        <h:panelGrid columns="3" style="#{cc.attrs.estilo}">
+            <h:outputText value="Clave"/>
+            <h:inputSecret id="clave1" value="#{cc.attrs.valor}">
+                <f:validator validatorId="validadorClaveDoble"/>
+                <f:attribute name="otroCampo" value="clave2"/>
+                <f:validateRequired/>
+            </h:inputSecret>
+            <h:message for="clave1"/>
+            <h:outputText value="Repita la clave"/>
+            <h:inputSecret id="clave2">
+                <f:validateRequired/>
+            </h:inputSecret>
+            <h:message for="clave2"/>
+            <cc:renderFacet name="textoFaceta"/>
+        </h:panelGrid>
+        
+    </cc:implementation>
+</html>
